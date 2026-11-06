@@ -301,9 +301,14 @@ choice BOARD_TYPE
     config BOARD_TYPE_LC_S3_WIFI_1_54TFT
         bool "LC-S3-WIFI 1.54-inch TFT"
         depends on IDF_TARGET_ESP32S3
+
     config BOARD_TYPE_LCDWIKI_ES3C35P
         bool "LCDWiki ES3C35P 3.5-inch ESP32-S3"
         depends on IDF_TARGET_ESP32S3
+    config BOARD_TYPE_TDL_S3_DIY
+        bool "TDL DIY ESP32-S3 N16R8"
+        depends on IDF_TARGET_ESP32S3
+
     config BOARD_TYPE_EDA_ROBOT_PRO
         bool "LCEDA Course Example EDA-Robot-Pro (EDA 课程案例)"
         depends on IDF_TARGET_ESP32S3

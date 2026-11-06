@@ -1,0 +1,9 @@
+{
+  "type": "tdl-esp32p4-c6-7inch",
+  "target": "esp32p4",
+  "builds": [
+    {
+      "name": "tdl-p4-7inch-default"
+    }
+  ]
+}
