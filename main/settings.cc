@@ -5,6 +5,7 @@
 
 #define TAG "Settings"
 
+// ns: namespace for the settings
 Settings::Settings(const std::string& ns, bool read_write) : ns_(ns), read_write_(read_write) {
     nvs_open(ns.c_str(), read_write_ ? NVS_READWRITE : NVS_READONLY, &nvs_handle_);
 }
