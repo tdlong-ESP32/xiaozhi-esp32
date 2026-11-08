@@ -1,0 +1,12 @@
+{
+  "type": "tdl-esp32s3-n16r8",
+  "target": "esp32s3",
+  "builds": [
+    {
+      "name": "tdl-s3-diy-lcd"
+    },
+    {
+      "name": "tdl-s3-diy-oled"
+    }
+  ]
+}
