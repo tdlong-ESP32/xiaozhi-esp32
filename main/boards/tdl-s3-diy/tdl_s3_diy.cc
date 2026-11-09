@@ -153,18 +153,38 @@ private:
         bus_cfg.flags.enable_internal_pullup = true;
         ESP_ERROR_CHECK(i2c_new_master_bus(&bus_cfg, &oled_i2c_bus_));
 
+        // Probe the OLED I2C device to ensure it's present
+        // ESP_LOGI(kTag, "Checking OLED I2C device at 0x3C");
+        // esp_err_t probe_err = i2c_master_probe(oled_i2c_bus_, 0x3C, 1000);
+        // if (probe_err == ESP_OK) {
+        //     ESP_LOGI(kTag, "OLED I2C device found at 0x3C");
+        // } else {
+        //     ESP_LOGE(kTag, "OLED I2C probe failed: %s", esp_err_to_name(probe_err));
+        // }
+        // End of probe
+
         esp_lcd_panel_io_i2c_config_t io_cfg = ESP_SH1106_DEFAULT_IO_CONFIG;
+        ESP_LOGI(kTag, "Creating SH1106 panel IO");
         ESP_ERROR_CHECK(esp_lcd_new_panel_io_i2c(oled_i2c_bus_, &io_cfg, &oled_panel_io_));
 
         esp_lcd_panel_dev_config_t panel_cfg = {};
         panel_cfg.reset_gpio_num = GPIO_NUM_NC;
         panel_cfg.rgb_ele_order = LCD_RGB_ELEMENT_ORDER_RGB;
         panel_cfg.bits_per_pixel = 1;
+
+        // ESP_LOGI(kTag, "Creating SH1106 panel");
         ESP_ERROR_CHECK(esp_lcd_new_panel_sh1106(oled_panel_io_, &panel_cfg, &oled_panel_));
+
+        // ESP_LOGI(kTag, "Resetting SH1106");
         ESP_ERROR_CHECK(esp_lcd_panel_reset(oled_panel_));
+
+        // ESP_LOGI(kTag, "Initializing SH1106");
         ESP_ERROR_CHECK(esp_lcd_panel_init(oled_panel_));
+
+        // ESP_LOGI(kTag, "Turning SH1106 display ON");
         ESP_ERROR_CHECK(esp_lcd_panel_disp_on_off(oled_panel_, true));
 
+        // ESP_LOGI(kTag, "Creating OledDisplay / LVGL");
         display_ =
             new OledDisplay(oled_panel_io_, oled_panel_, OLED_WIDTH, OLED_HEIGHT, false, false);
         ESP_LOGI(kTag, "SH1106 OLED ready: %d x %d", OLED_WIDTH, OLED_HEIGHT);
