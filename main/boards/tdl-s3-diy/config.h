@@ -47,8 +47,6 @@
 #define AUDIO_I2S_WS_PIN GPIO_NUM_12
 #define AUDIO_I2S_MIC_DIN_PIN GPIO_NUM_14
 #define AUDIO_I2S_SPK_DOUT_PIN GPIO_NUM_13
-
-// NoAudioCodecDuplex uses a common I2S clock configuration for RX and TX.
 #define AUDIO_INPUT_SAMPLE_RATE 24000
 #define AUDIO_OUTPUT_SAMPLE_RATE 24000
 
@@ -57,8 +55,11 @@
 #define VOLUME_UP_BUTTON_GPIO GPIO_NUM_NC
 #define VOLUME_DOWN_BUTTON_GPIO GPIO_NUM_NC
 
-// Optional SH1106 OLED; not used by this LCD build.
+// SH1106 OLED variant: I2C0, 128x64, default address 0x3C.
+#define OLED_I2C_PORT I2C_NUM_0
 #define OLED_I2C_SDA_PIN GPIO_NUM_1
 #define OLED_I2C_SCL_PIN GPIO_NUM_2
+#define OLED_WIDTH 128
+#define OLED_HEIGHT 64
 
 #endif  // _BOARD_CONFIG_H_
